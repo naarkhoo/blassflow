@@ -1,0 +1,16 @@
+all:  gig_par.o
+
+gig_par.o : gig_par.cpp
+	$(CC)  $(CXXFLAGS) $(INCL) $(OPT) -c gig_par.cpp
+%.o : %.c
+	$(CC)  $(CXXFLAGS) $(INCL) $(OPT) -c $^ -o $@ 
+
+
+/rngstream/RngStream.o: 
+	- ( cd /rngstream/ && $(MAKE))
+
+
+.PHONY: clean
+clean:
+	rm -f *.o *~
+	- ( cd $(CURDIR)/rngstream/ && $(MAKE) clean)
